@@ -144,9 +144,12 @@ final class ImageEditorViewModel {
     }
 
     private func updateUndoRedoState() async {
+        let canUndoValue = await undoRedoManager.canUndo
+        let canRedoValue = await undoRedoManager.canRedo
+
         await MainActor.run {
-            canUndo = Task { await undoRedoManager.canUndo }.result == true
-            canRedo = Task { await undoRedoManager.canRedo }.result == true
+            canUndo = canUndoValue
+            canRedo = canRedoValue
         }
     }
 
