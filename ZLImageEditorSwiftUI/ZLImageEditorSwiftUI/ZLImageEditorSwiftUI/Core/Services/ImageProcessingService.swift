@@ -144,12 +144,12 @@ actor ImageProcessingService {
 
             // Composite drawing
             if let drawingImage {
-                result = self.composite(drawingImage, onto: result)
+                result = await self.composite(drawingImage, onto: result)
             }
 
             // Composite mosaic
             if let mosaicImage, !mosaicPaths.isEmpty {
-                result = self.compositeMosaic(mosaicImage, paths: mosaicPaths, onto: result)
+                result = await self.compositeMosaic(mosaicImage, paths: mosaicPaths, onto: result)
             }
 
             return result
